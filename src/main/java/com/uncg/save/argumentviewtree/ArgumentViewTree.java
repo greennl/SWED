@@ -100,6 +100,7 @@ public class ArgumentViewTree
     private   String                         treeID                 = null;
     private   int                            size                   = -1;    //Size of tree
     private   boolean                        minimizeTree           = false;    
+    private   int                            activeCQs              = 0;
 
     //
     //  Root node of an argument view tree
@@ -399,13 +400,13 @@ public class ArgumentViewTree
         return premiseConnection;
     }    
     
-    private ArgumentNode createCQPremiseConnection( Node parentView, int premiseNumber )
+    private ArgumentNode createCQPremiseConnection( Node parentView )
     {
         Point2D layout         = getRelativeLayout( parentView );
         Point2D adjustedLayout = new Point2D( layout.getX() ,
                                               layout.getY() - PREMISE_HEIGHT / 2 );
         
-        PremiseConnectionNode premiseConnection = new PremiseConnectionNode( -1, adjustedLayout );
+        PremiseConnectionNode premiseConnection = new PremiseConnectionNode( adjustedLayout, ++this.activeCQs );
 
         return premiseConnection;
     }        
@@ -3010,7 +3011,7 @@ public class ArgumentViewTree
                                                                                     nexusMatrix ) ) );
         targetNexusLayer.add( nexus );
 
-        ArgumentNode cqConnect = createCQPremiseConnection( mainCQConnector.getView(), 0 );
+        ArgumentNode cqConnect = createCQPremiseConnection( mainCQConnector.getView() );
         nexus.addAsChild( cqConnect );
         cqConnect.setParent( nexus );
         canvas.getChildren().add( cqConnect.getView() );
@@ -3080,7 +3081,7 @@ public class ArgumentViewTree
                                                                                     nexusMatrix ) ) );
         targetNexusLayer.add( nexus );
 
-        ArgumentNode cqConnect = createCQPremiseConnection( mainCQConnector.getView(), 0 );
+        ArgumentNode cqConnect = createCQPremiseConnection( mainCQConnector.getView() );
         nexus.addAsChild( cqConnect );
         cqConnect.setParent( nexus );
         canvas.getChildren().add( cqConnect.getView() );

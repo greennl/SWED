@@ -72,7 +72,7 @@ public final class PremiseConnectionNode extends ArgumentNode implements Draggab
         if ( premiseNumber == -1 )
         {
             this.line = new Line( target.getX(), target.getY() + PREMISE_HEIGHT / 2,
-                                  target.getX() + PREMISE_WIDTH, target.getY() + PREMISE_HEIGHT / 2 );
+                                  target.getX() + PREMISE_WIDTH, target.getY() + ( PREMISE_HEIGHT / 2 ) + 50);
         }
         else
         {
@@ -112,6 +112,50 @@ public final class PremiseConnectionNode extends ArgumentNode implements Draggab
 
         } );
     }
+    
+    public PremiseConnectionNode( Point2D target, int activeCQs )
+    {
+        super();
+        double rectHeight = 70;
+        int vOffset       = activeCQs * V_OFFSET;
+
+        System.out.println( activeCQs );
+        
+        this.line = new Line( target.getX(), target.getY() + PREMISE_HEIGHT / 2,
+                               target.getX() + PREMISE_WIDTH, target.getY() + ( PREMISE_HEIGHT / 2 ) + vOffset );
+
+        this.line.getStrokeDashArray().addAll( 7.0 );
+        this.line.setStrokeWidth( 3 );
+
+        this.getView().addEventFilter( MouseEvent.MOUSE_PRESSED, ( MouseEvent event ) ->
+        {
+            if ( selected )
+            {
+                this.transX = event.getSceneX();
+                this.transY = event.getSceneY();
+            }
+        } );
+
+        this.getView().addEventFilter( MouseEvent.MOUSE_DRAGGED, ( MouseEvent event ) ->
+        {
+            if ( selected ) 
+            {
+                this.onDragRelease( event );
+                this.transX = event.getSceneX();
+                this.transY = event.getSceneY();
+            }
+        } );
+        
+        this.getView().addEventFilter( MouseEvent.MOUSE_CLICKED, ( MouseEvent event ) -> 
+        {
+            if ( event.getButton() == MouseButton.SECONDARY )
+            {                
+                this.selected = !selected;
+                this.line.setStroke( selected ? Color.GRAY : Color.BLACK );
+            } 
+
+        } );
+    }    
 
     public PremiseConnectionNode( Point2D target, boolean argument )
     {

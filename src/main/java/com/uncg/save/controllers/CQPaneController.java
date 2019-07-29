@@ -80,7 +80,7 @@ public class CQPaneController extends ConclusionPaneController implements Initia
     private int                     position;
     private double                  x;
     private double                  y;
-    private int                     proConStatus = -1;
+    private int                     proConStatus = 2;
     private int                     cqNum;
 
     //////////////////////// INSTANCE VARIABLES /////////////////////////////

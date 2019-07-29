@@ -104,7 +104,7 @@ public class SchemePaneController implements Initializable
         childAnchorPane.getStyleClass().add( "anchor-pane" );
         childAnchorPane.getStyleClass().add( "scheme-data-pane" );
         dataVBox.getStyleClass().add( "scheme-data-vbox" );
-        premiseLabel.getStyleClass().add( "premise-text-field-label" );  //Modify this
+        premiseLabel.getStyleClass().add( "internal-field-label" );  //Modify this
         criticalQuestionLabel.getStyleClass().add( "internal-data-label" );
         criticalQuestionsTitledPane.getStyleClass().add( "internal-titled-pane" );
         criticalQuestionLabel.getStyleClass().add( "label" );
