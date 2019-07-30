@@ -291,6 +291,8 @@ public class PremisePaneController implements Initializable, Draggable
         //
         this.mainPane.addEventFilter( MouseEvent.MOUSE_ENTERED, ( MouseEvent event ) -> 
         {
+            this.parentControl.setPremisePaneController( this );
+            
             if ( this.dragging || this.propBoxController == null || this.propBoxController.text == null 
                                || this.prop == null )
             {
