@@ -117,7 +117,7 @@ public class CQPaneController extends ConclusionPaneController implements Initia
         //
         this.mainPane.addEventFilter( MouseEvent.MOUSE_ENTERED, ( MouseEvent mouseEvent ) -> 
         {
-            this.parentControl.setConclusionPaneController( this );
+            this.parentControl.setCQPaneController( this );
         } ); 
         
         //
@@ -187,6 +187,7 @@ public class CQPaneController extends ConclusionPaneController implements Initia
                         this.propBoxController.text.setText( this.getText() );
                         this.parentControl.setCQPaneController( this );
                         this.hasProp = true;
+                        this.prop.setTitle( this.getText().substring( 0, this.getText().indexOf( ":" ) ) );                        
                     }
                 } 
                 catch ( IOException ex )
@@ -200,6 +201,7 @@ public class CQPaneController extends ConclusionPaneController implements Initia
         this.contextMenu = new ContextMenu();
         this.setContextMenuItems();
         this.setContextMenuEventFilter();
+
     }
     
     public void initializePane( String proposition, int proConFlag )
@@ -219,6 +221,8 @@ public class CQPaneController extends ConclusionPaneController implements Initia
                 this.parentControl.setCQPaneController( this );
                 this.hasProp = true;
                 this.proConStatus = proConFlag;
+                this.prop.setTitle( proposition.substring( 0, proposition.indexOf( ":" ) ) );
+                
                 switch ( this.proConStatus )
                 {
                     case 0: this.propBoxController.text.setStyle( "-fx-border-color: #0f0; -fx-border-width: 4;" ); break; //Green

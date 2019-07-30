@@ -363,7 +363,9 @@ public class PropositionBoxController implements Initializable
     @FXML
     private void updateText()
     {
-        // We only want to update the text if it's a PREMISE being updated, not a CPC or CQPC
+        // We only want to update the text if it's a PREMISE being updated, not a CPC
+        System.out.println( this.constControl.getCQPaneController() );
+        System.out.println( this.prop.getTitle() );
         if ( !this.text.getText().contains( this.prop.getTitle() ) && this.constControl.getConclusionPaneController() == null )
         {
             this.text.setText( this.prop.getTitle() + ": " );

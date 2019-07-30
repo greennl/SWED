@@ -153,6 +153,24 @@ public class ConstructionAreaController implements Initializable
             }
             
             //
+            // If we're resizing the cq pane
+            //
+            else if ( this.cqpc != null )
+            {
+                if ( this.cqpc.mouseInsideLeftRect( mx, my ) || this.cqpc.mouseInsideRightRect( mx, my ) )
+                {
+                    this.cqpc.mainPane.getScene().setCursor( Cursor.W_RESIZE );
+                }
+                else
+                {
+                    if ( this.cqpc != null && this.cqpc.mainPane != null && this.cqpc.mainPane.getScene() != null )
+                    {
+                        this.cqpc.mainPane.getScene().setCursor( Cursor.DEFAULT );   
+                    }
+                }
+            }            
+            
+            //
             // If we're resizing the premise pane
             //
             else if ( this.ppc != null && this.ppc.mainPane != null && this.ppc.mainPane.getScene() != null )
@@ -192,6 +210,14 @@ public class ConstructionAreaController implements Initializable
                     maCPC.dragging = maCPC.resizeNexus[ ResizeEnum.LEFT.ID ] | maCPC.resizeNexus[ ResizeEnum.RIGHT.ID ];
                 }
             }
+            // If we're resizing the cq pane
+            else if ( this.cqpc != null )
+            {
+                this.cqpc.resizeWidth[ ResizeEnum.LEFT.ID ]   = this.cqpc.mouseInsideLeftRect( mx, my );
+                this.cqpc.resizeWidth[ ResizeEnum.RIGHT.ID ]  = this.cqpc.mouseInsideRightRect( mx, my );
+                this.cqpc.dragging =  this.cqpc.resizeWidth[ ResizeEnum.LEFT.ID ] | this.cqpc.resizeWidth[ ResizeEnum.RIGHT.ID ];
+                // We also need to check if the user wants to resize the premise nexus
+            }            
             // If we're resizing the premise pane
             else if ( this.ppc != null )
             {
@@ -267,6 +293,44 @@ public class ConstructionAreaController implements Initializable
                      maCPC.argTree.nexusMatrixAdjustment( MouseUtils.Delta_X );
                 }
             }
+            
+            // If we're resizing the conclusion pane
+            if ( this.cqpc != null ) 
+            {
+                
+                if ( this.cqpc.resizeWidth[ ResizeEnum.LEFT.ID ] || this.cqpc.resizeWidth[ ResizeEnum.RIGHT.ID ] )
+                {
+                    // If we are currently stretching the pane horizontally, we need
+                    // to grab the offset difference between where we started and 
+                    // where we are now. We can use this to calculate the new dimensions.
+                    
+                    // Determine which side we're trying to resize from
+                    if ( this.cqpc.resizeWidth[ ResizeEnum.LEFT.ID ] )
+                    {
+                        MouseUtils.Delta_X = MouseUtils.Mouse_X - mouseEvent.getSceneX() ;
+                    } 
+                    else 
+                    {
+                        MouseUtils.Delta_X = mouseEvent.getSceneX() - MouseUtils.Mouse_X ;
+                    }
+
+                    // If we're stretching to the left or right
+                    if ( Math.signum( MouseUtils.Delta_X ) > 0 )
+                    {
+                        this.cqpc.setWidth( ( int ) MouseUtils.Delta_X + this.cqpc.getWidth(), this.cqpc.getWidth() );
+                    }
+                    else if ( this.cqpc.getWidth() - MouseUtils.Delta_X  >= 325 )
+                    {
+                        this.cqpc.setWidth( this.cqpc.getWidth() - ( int ) Math.abs( MouseUtils.Delta_X ) , this.cqpc.getWidth() );
+                    }
+                    else
+                    {
+                        this.cqpc.resetSize();
+                    }
+                    this.cqpc.resizeWidth[ ResizeEnum.LEFT.ID ] = this.cqpc.resizeWidth[ ResizeEnum.RIGHT.ID ] = false;
+                    this.mainPane.getScene().setCursor( Cursor.DEFAULT );
+                }   
+            }            
             
             //
             // If we're resizing the premise pane
