@@ -59,7 +59,7 @@ Carolina at Greensboro.
                 </Menu>
                 <Menu fx:id="toolsMenu" mnemonicParsing="false" text="Diagram">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#undoAction" text="Undo (Ctrl+Z)" />
+                        <MenuItem mnemonicParsing="false" onAction="#undoAction" text="Undo (Ctrl+Z)" disable="true"/>
                         <MenuItem mnemonicParsing="false" onAction="#clearDiagram" text="Clear (Ctrl+Alt+X)" />
                         <MenuItem mnemonicParsing="false" onAction="#feedback" text="Feedback" disable="true" />
                         <MenuItem mnemonicParsing="false" onAction="#summary" text="Summary" disable="true" />

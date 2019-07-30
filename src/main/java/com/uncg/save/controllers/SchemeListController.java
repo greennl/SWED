@@ -592,7 +592,7 @@ public class SchemeListController implements Initializable
             sb.append( s.get( i ) );
             sb.append( "\n\u2015\u2015\u2015\u2015\u2015"
                      + "\u2015\u2015\u2015\u2015\u2015"
-                     + "\u2015\u2015\u2015\u2015\n" );            
+                     + "\u2015\u2015\n" );            
             i ++;
         }
         return sb.toString();
