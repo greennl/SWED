@@ -68,7 +68,7 @@ public class ArgumentModel
         this.conclusion = new PremiseModel();
         this.conclusion.addAsConclusionForArgument( this );
 
-        premises = new PremiseModel[scheme.getPremises().size()];
+        premises = new PremiseModel[ scheme.getPremises().size() ];
         for ( int i = 0; i < premises.length; i ++ )
         {
             PremiseModel premise = new PremiseModel();
@@ -254,6 +254,11 @@ public class ArgumentModel
     {
         return conclusion;
     }    
+    
+    public SchemeModel getSchemeModel()
+    {
+        return this.scheme;
+    }
 
     public String[] toArray()
     {

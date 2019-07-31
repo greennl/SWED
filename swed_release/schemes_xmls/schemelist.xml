@@ -44,7 +44,7 @@ Carolina at Greensboro.
 				<definition>Give the ethical criteria justifying use of the cyberweapon in this case.</definition>
 			</premise>
         </premises>
-        <conclusion>It is acceptable to some degree to deploy the cyberweapon against the adversary.</conclusion>
+        <conclusion>It is ethically acceptable to some degree to deploy the cyberweapon against the adversary.</conclusion>
         <CQs>
 			<CQ>Proportionality: Is the harm to the adversary from the cyberweapon proportional to the harm inflicted by the adversary?</CQ>
 			<CQ>Legitimate target: Is the target of the cyberweapon the actual source of harm?</CQ>
@@ -73,7 +73,7 @@ Carolina at Greensboro.
 				<definition>Explain why the degree or risk of harm from these consequences is within acceptable limits.</definition>
 			</premise>
         </premises>
-        <conclusion>The action is acceptable to some degree.</conclusion>
+        <conclusion>The action is ethically acceptable to some degree.</conclusion>
         <CQs>
 			<CQ>Risk: Is the risk of these negative consequences unacceptably high?</CQ>
 			<CQ>Degree of harm:  Is the degree of harm from these negative consequences unacceptably high?</CQ>
@@ -95,7 +95,7 @@ Carolina at Greensboro.
 				<definition>Explain why the degree or risk of harm from these consequences is not within acceptable limits.</definition>
 			</premise>
 		</premises>
-        <conclusion>The action is not acceptable to some degree.</conclusion>
+        <conclusion>The action is not ethically acceptable to some degree.</conclusion>
         <CQs>
 			<CQ>Risk: Is the risk of these negative consequences acceptably low?</CQ>
 			<CQ>Degree of harm:  Is the degree of harm from these negative consequences acceptably low?</CQ>

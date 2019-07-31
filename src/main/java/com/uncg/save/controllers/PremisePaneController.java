@@ -117,6 +117,7 @@ public class PremisePaneController implements Initializable, Draggable
     private boolean                           initialized        = false;
     private boolean                           hasProp            = false;
     private boolean                           dragging           = false;
+    
 
     //
     // Left, right, top, and bottom points
@@ -139,7 +140,7 @@ public class PremisePaneController implements Initializable, Draggable
     //
     private double                          x;
     private double                          y;
-    private int                             proConStatus = 0;
+    private int                             proConStatus = 2;
 
     @Override
     public void initialize( URL url, ResourceBundle rb )
@@ -350,6 +351,7 @@ public class PremisePaneController implements Initializable, Draggable
     {
         MenuItem copy            = new MenuItem( "Copy (CTRL+C)"        );
         MenuItem paste           = new MenuItem( "Paste (CTRL+V)"       );
+        MenuItem toggleProCon    = new MenuItem( "Toggle Pro/Con"       );
         MenuItem clearText       = new MenuItem( "Clear Text"           );
         MenuItem counterArg      = new MenuItem( "Add Counter Argument" );
             counterArg.setDisable( true );
@@ -365,23 +367,10 @@ public class PremisePaneController implements Initializable, Draggable
         this.setHandlerForClearText  ( clearText       );
         this.setHandlerForCopy       ( copy            );
         this.setHandlerForPaste      ( paste           );
+        this.setHandlerForToggle     ( toggleProCon    );
 
-        this.contextMenu.getItems().addAll( copy,      paste, 
+        this.contextMenu.getItems().addAll( copy,      paste, toggleProCon, 
                                             clearText, counterArg   );
-    }
-    
-    /**
-     * This method creates a work-around for CQs that are added 
-     * as premises rather than CQs themselves when loading a
-     * tree back into SWED.
-     */
-    protected void addProConToggle()
-    {
-        MenuItem toggleProCon = new MenuItem( "Toggle Pro/Con" );
-        
-        this.setHandlerForToggle( toggleProCon );
-        
-        this.contextMenu.getItems().add( toggleProCon );
     }
     
     private void showContextMenu( ContextMenuEvent event )
@@ -440,7 +429,15 @@ public class PremisePaneController implements Initializable, Draggable
                     this.setContextMenuItems();
                     
                     this.initialized = true;
+                    switch ( this.proConStatus )
+                    {   
+                        case 0: this.propBoxController.text.setStyle( "-fx-border-color: #0f0; -fx-border-width: 4;" ); break; //Green
+                        case 1: this.propBoxController.text.setStyle( "-fx-border-color: #f00; -fx-border-width: 4;" ); break; //Red 
+                        case 2: this.propBoxController.text.setStyle( "-fx-border-color: #000; -fx-border-width: 0;" ); break; //Black
+                    }                                 
                 }
+                
+                
             }
         } 
         catch ( IOException ex )
@@ -471,19 +468,21 @@ public class PremisePaneController implements Initializable, Draggable
     {
         item.setOnAction( action ->
         {
-            switch( this.proConStatus )
-            {
-                case 0: this.getPropositionBoxController().text.setStyle( "-fx-border-color: #0f0; -fx-border-width: 4;" ); break; //Green
-                case 1: this.getPropositionBoxController().text.setStyle( "-fx-border-color: #f00; -fx-border-width: 4;" ); break; //Red 
-                case 2: this.getPropositionBoxController().text.setStyle( "-fx-border-color: #000; -fx-border-width: 0;" ); break; //Black
-            }
             
             this.proConStatus++;
             
             if ( this.proConStatus > 2 )
             {
                 this.proConStatus = 0;
+            }            
+            
+            switch( this.proConStatus )
+            {
+                case 0: this.getPropositionBoxController().text.setStyle( "-fx-border-color: #0f0; -fx-border-width: 4;" ); break; //Green
+                case 1: this.getPropositionBoxController().text.setStyle( "-fx-border-color: #f00; -fx-border-width: 4;" ); break; //Red 
+                case 2: this.getPropositionBoxController().text.setStyle( "-fx-border-color: #000; -fx-border-width: 0;" ); break; //Black
             }
+
             
             action.consume();
         } );
@@ -1108,6 +1107,16 @@ public class PremisePaneController implements Initializable, Draggable
     public ArgumentNode getArgNode()
     {
         return this.argNode;
+    }
+    
+    public int getProCon()
+    {
+        return this.proConStatus;
+    }
+    
+    public void setProCon( int pcs )
+    {
+        this.proConStatus = pcs;
     }
 }
     

@@ -451,6 +451,7 @@ public class ArgumentViewTree
         premiseControl.setConnectionNode( this.premiseConnectionNodes.get( premiseNumber ) );
         premiseControl.setParentControl( canvasControl );
         premiseControl.setSchemeLabel( lbl );
+        premiseControl.setProCon( arg.getSchemeModel().getPremises().get( premiseNumber ).getProCon() );
         
         lbl.setText( arg.getSchemePremise( premiseNumber ) );
         Point2D layout = getRelativeLayout( parentView );
@@ -1864,6 +1865,7 @@ public class ArgumentViewTree
             caFlagNodes.push( new ArgNodeDepthPair( node, treeDepth ) );
         }        
         
+        // Saving conclusion
         if( node instanceof ConclusionNode && ! ( node instanceof CounterPropositionNode ) 
                                            && ! ( node instanceof CounterArgumentNode ) 
                                            && ! ( node instanceof CQNode ) )
@@ -1910,6 +1912,8 @@ public class ArgumentViewTree
                 fw.println( this.repeat( "-", treeDepth ) + "END" );
 		treeDepth++;
         }
+        
+        // Saving CQ
         else if( node instanceof CQNode )
         {
             final CQPaneController cqpc = ( CQPaneController )( ( CQNode ) node ).getControl();
@@ -1953,6 +1957,8 @@ public class ArgumentViewTree
                 fw.println( this.repeat( "-", treeDepth ) + "flags=" + 3 + " " + cqpc.getProCon() + " " + cqpc.getCQNum() );                
                 fw.println( this.repeat( "-", treeDepth ) + "END" );
         }        
+        
+        // Saving Premise
         else if( node instanceof PremiseNode )
         {
             final PremisePaneController ppc = ( ( PremiseNode ) node ).getControl();
@@ -2001,7 +2007,8 @@ public class ArgumentViewTree
                 //  Saves positions
                 fw.println( this.repeat( "-", treeDepth ) + "X=" + x );     
                 fw.println( this.repeat( "-", treeDepth ) + "Y=" + y );
-                fw.println( this.repeat( "-", treeDepth ) + "flags=" + ( ppc.getArgNode().caFlag ? 1 : 0 ) + " " + 3);                
+                fw.println( this.repeat( "-", treeDepth ) + "flags=" + ( ppc.getArgNode().caFlag ? 1 : 0 ) + " " + ppc.getProCon() );    
+                System.out.println( "Premise proconflag: " + ppc.getProCon() );
                 fw.println( this.repeat( "-", treeDepth ) + "END" );
         }
         

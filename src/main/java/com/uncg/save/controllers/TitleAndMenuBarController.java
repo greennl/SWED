@@ -1784,9 +1784,6 @@ public class TitleAndMenuBarController implements Initializable
      *
      * @param event
      * @throws java.io.IOException
-     * @TODO  Currently works on 1-layer deep trees, but need to add > 1-layer deep 
-     *        tree functionality. This can POSSIBLY be implemented via the 
-     *        SchemeModel array... but... how...
      */
     @FXML
     protected void openArgumentScheme( ActionEvent event ) throws IOException
@@ -1925,8 +1922,6 @@ public class TitleAndMenuBarController implements Initializable
                     flags[ PRO_CON_FLAG ] = Integer.parseInt( line.substring( line.length() - 1 ) );
                 }
                 
-                System.out.println( "Line: " + line + " \nflags: " + flags[ PRO_CON_FLAG ] );
-                
                 ArgumentViewTree argViewTree = new ArgumentViewTree( cac.getMainPane(), cac );
                 
                 //  Insert the conclusion into the array holding logical positions 
@@ -1948,7 +1943,7 @@ public class TitleAndMenuBarController implements Initializable
                     //  [higher-up] conclusion.
                     if ( schemeArray[ treeDepth - 1 ] != null )
                     {
-                        schemeArray[ treeDepth - 1 ].addPremise( new Premise( title, definition, proposition ) );
+                        schemeArray[ treeDepth - 1 ].addPremise( new Premise( title, definition, proposition, flags[ PRO_CON_FLAG ] ) );
                     }                     
                 }
                 
@@ -1987,7 +1982,7 @@ public class TitleAndMenuBarController implements Initializable
 
                             if ( colonIndex > 0 )
                             {
-                                schemeArray[ p ].addPremise( new Premise( title, definition, proposition ) );
+                                schemeArray[ p ].addPremise( new Premise( title, definition, proposition, flags[ PRO_CON_FLAG ] ) );
                             } 
                             else
                             {

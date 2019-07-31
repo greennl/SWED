@@ -43,7 +43,7 @@ public class Premise implements Serializable
     
     private String text;
     
-    private int proConStatus = -1;
+    private int proConStatus = 2;
 
     public Premise()
     {
@@ -55,11 +55,12 @@ public class Premise implements Serializable
         this.definition = definition;
     }
     
-    public Premise( String name, String definition, String text )
+    public Premise( String name, String definition, String text, int proConStatus )
     {
-        this.name       = name;
-        this.definition = definition;
-        this.text       = text;
+        this.name         = name;
+        this.definition   = definition;
+        this.text         = text;
+        this.proConStatus = proConStatus;
     }    
     
     public Premise( String name, String definition, int proConStatus )
@@ -89,7 +90,7 @@ public class Premise implements Serializable
         return this.definition;
     }
     
-    public int getProConStatus()
+    public int getProCon()
     {
         return this.proConStatus;
     }
