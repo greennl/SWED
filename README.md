@@ -24,6 +24,10 @@ If you wish to utilize your own custom case studies, add the cases in an xml fil
 
 If you wish to utilize your own ethics resources, add the cases in an xml file to ethics_xmls your working directory.
 
+#### Schema Files
+
+The schema files for the ethics, cases, and scheme list XMLs are located in /src/main/resources/schema.
+
 ## Usage
 
 Please refer to the help files and tutorials in the folders by those names.
