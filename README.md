@@ -26,7 +26,7 @@ If you wish to utilize your own ethics resources, add the cases in an xml file t
 
 #### Schema Files
 
-The schema files for the ethics, cases, and scheme list XMLs are located in /src/main/resources/schema.
+The schema files for the ethics, cases, and scheme list XMLs are located in [/src/main/resources/schema](https://github.com/greennl/SWED/tree/master/src/main/resources/schema).
 
 ## Usage
 
