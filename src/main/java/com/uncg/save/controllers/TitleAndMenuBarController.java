@@ -2270,13 +2270,15 @@ public class TitleAndMenuBarController implements Initializable
         try
         {
             SchemaFactory sf               = SchemaFactory.newInstance( "http://www.w3.org/2001/XMLSchema" );
+            Schema        schema           = sf.newSchema( getClass().getResource( "/schema/ethics.xsd" ) );
             InputStream   xmlStream        = new FileInputStream( fileName.getAbsoluteFile() );
             JAXBContext   jaxbContext      = JAXBContext.newInstance( EthicsModel.class );
             Unmarshaller  jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            jaxbUnmarshaller.setSchema( schema );
 
             ethics = ( EthicsModel ) jaxbUnmarshaller.unmarshal( xmlStream );
         } 
-        catch ( JAXBException | FileNotFoundException e )
+        catch ( FileNotFoundException e )
         {
             AlertStage alert = new AlertStage( AlertType.ERROR, "Error -- Could not load Ethics XML file. Did you load the wrong file?",
                                              ( Stage ) this.parentControl.constructionAreaController.mainPane.getScene().getWindow() );
@@ -2284,6 +2286,16 @@ public class TitleAndMenuBarController implements Initializable
             this.ethicsActive = false;
             return null;
         }
+        catch ( JAXBException | SAXException e )
+        {
+            AlertStage alert = new AlertStage( AlertType.ERROR, "Error -- Ethics XML file does not match the intended schema.",
+                                             ( Stage ) this.parentControl.constructionAreaController.mainPane.getScene().getWindow() );
+            
+            Logger.getLogger( TitleAndMenuBarController.class.getName() ).log( Level.SEVERE, null, e );
+            this.ethicsActive = false;
+
+            return null;            
+        }                
 
         return ethics;
     }
@@ -2302,12 +2314,15 @@ public class TitleAndMenuBarController implements Initializable
         try
         {
             SchemaFactory sf               = SchemaFactory.newInstance( "http://www.w3.org/2001/XMLSchema" );
+            Schema        schema           = sf.newSchema( getClass().getResource( "/schema/cases.xsd" ) );
             InputStream   xmlStream        = new FileInputStream( fileName.getAbsoluteFile() );
             JAXBContext   jaxbContext      = JAXBContext.newInstance( CaseModel.class );
             Unmarshaller  jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            jaxbUnmarshaller.setSchema( schema );
+            
             caseStudy                      = ( CaseModel ) jaxbUnmarshaller.unmarshal( xmlStream );
         } 
-        catch ( JAXBException | FileNotFoundException e )
+        catch ( FileNotFoundException e )
         {
             AlertStage alert = new AlertStage( AlertType.ERROR, "Error -- Could not load Cases XML file. Did you load the wrong file?",
                                              ( Stage ) this.parentControl.constructionAreaController.mainPane.getScene().getWindow() );
@@ -2315,6 +2330,15 @@ public class TitleAndMenuBarController implements Initializable
             Logger.getLogger( TitleAndMenuBarController.class.getName() ).log( Level.SEVERE, null, e );
             this.casesActive = false;
             return null;
+        }
+        catch ( JAXBException | SAXException e )
+        {
+            AlertStage alert = new AlertStage( AlertType.ERROR, "Error -- Cases XML file does not match the intended schema.",
+                                             ( Stage ) this.parentControl.constructionAreaController.mainPane.getScene().getWindow() );
+            
+            Logger.getLogger( TitleAndMenuBarController.class.getName() ).log( Level.SEVERE, null, e );
+            this.casesActive = false;
+            return null;            
         }
 
         return caseStudy;
@@ -2333,7 +2357,7 @@ public class TitleAndMenuBarController implements Initializable
         try
         {
             SchemaFactory sf               = SchemaFactory.newInstance( "http://www.w3.org/2001/XMLSchema" );
-            Schema        schema           = sf.newSchema( getClass().getResource( "/xml/scheme.xsd" ) );
+            Schema        schema           = sf.newSchema( getClass().getResource( "/schema/scheme.xsd" ) );
             InputStream   xmlStream        = new FileInputStream( fileName.getAbsoluteFile()  );
             JAXBContext   jaxbContext      = JAXBContext.newInstance( SchemeList.class );
             Unmarshaller  jaxbUnmarshaller = jaxbContext.createUnmarshaller();
@@ -2342,7 +2366,7 @@ public class TitleAndMenuBarController implements Initializable
             jaxbUnmarshaller.setSchema( schema );
             schemeList = sl.getModels();
         } 
-        catch ( SAXException | FileNotFoundException ex )
+        catch ( FileNotFoundException ex )
         {
             AlertStage alert = new AlertStage( AlertType.ERROR, "Error -- Could not load Scheme XML file. Did you load the wrong file?",
                                              ( Stage ) this.parentControl.constructionAreaController.mainPane.getScene().getWindow() ); 
@@ -2351,6 +2375,16 @@ public class TitleAndMenuBarController implements Initializable
             this.schemesActive = false;
             return null;
         }
+        catch ( JAXBException | SAXException e )
+        {
+            AlertStage alert = new AlertStage( AlertType.ERROR, "Error -- Scheme XML file does not match the intended schema.",
+                                             ( Stage ) this.parentControl.constructionAreaController.mainPane.getScene().getWindow() );
+            
+            Logger.getLogger( TitleAndMenuBarController.class.getName() ).log( Level.SEVERE, null, e );
+                        this.schemesActive = false;
+
+            return null;            
+        }        
        
         return schemeList;
 

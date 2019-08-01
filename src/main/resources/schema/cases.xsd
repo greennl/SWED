@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <!--
 ===========================================================================
                  Software Engineering Ethics Debater (SWED) Cases Schema
@@ -23,15 +25,13 @@ Carolina at Greensboro.
 ===========================================================================
 -->
 
-<?xml version="1.0"?>
-
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified">
 	<xs:element name="caseStudy">
 	    <xs:complexType>
             <xs:sequence>
-				<xs:element name="title" type="xs:string" />
-				<xs:element name="text" >
+				<xs:element name="title" type="xs:string" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="text" minOccurs="0" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:sequence>
 							<xs:element name="para" minOccurs="0" maxOccurs="unbounded">
@@ -40,10 +40,10 @@ Carolina at Greensboro.
 					</xs:complexType>
 				</xs:element>
 				
-				<xs:element name="metadata">
+				<xs:element name="metadata" minOccurs="0" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="paraMeta" minOccurs="0" maxOccurs="unbounded">
+							<xs:element name="data" minOccurs="0" maxOccurs="unbounded">
 							</xs:element>
 						</xs:sequence>
 					</xs:complexType>
