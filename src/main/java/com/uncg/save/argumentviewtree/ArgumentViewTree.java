@@ -1899,7 +1899,7 @@ public class ArgumentViewTree
                 
                 //  Saves proposition
                 fw.println( this.repeat( "-", treeDepth ) + "proposition="
-                                                          + cpc.getPropositionBoxController().getTextAreaText() );   
+                                                          + cpc.getPropositionBoxController().getTextAreaText().replace("\r\n", " ").replace("\n", " ") );   
                 
                 //  Saves definition
                 fw.println( this.repeat( "-", treeDepth ) + "definition="
@@ -1941,7 +1941,7 @@ public class ArgumentViewTree
                 try
                 {
                     fw.println( this.repeat( "-", treeDepth ) + "proposition="
-                                                              + cqpc.getTextInTextArea() );   
+                                                              + cqpc.getTextInTextArea().replace("\r\n", " ").replace("\n", " ") );   
                 }                
                 catch ( NullPointerException ex )
                 {
@@ -1989,7 +1989,7 @@ public class ArgumentViewTree
                                                               +  ppc.getProposition().getTitle() );                    
                     
                     fw.println( this.repeat( "-", treeDepth ) + "proposition="
-                                                              + ppc.getTextInTextArea() ); 
+                                                              + ppc.getTextInTextArea().replace("\r\n", " ").replace("\n", " ") ); 
                     
                     fw.println( this.repeat( "-", treeDepth ) + "definition="
                                                               + ppc.getProposition().getDefinition() );
