@@ -3,6 +3,11 @@
 
 SWED (Software Engineering Ethics Debater) is an educational argument diagramming tool for the domain of software engineering ethics. SWED provides a set of argument schemes as cognitive building blocks for constructing argument diagrams in this domain.  SWED’s user interface and argument schemes were designed by Dr. Nancy Green, University of North Carolina Greensboro.  SWED is the follow-on to her previous work on [AVIZE](https://github.com/greennl/AVIZE).  SWED was implemented by [Larry Joshua Crotts](https://www.github.com/JoshuaCrotts), a UNCG computer science undergraduate, who refactored AVIZE.
 
+## AIED – AI Ethics Debate
+AIED was designed to support creation and graphical realization of AI ethics arguments using argument schemes.  AIED was implemented using SWED.  The current version of SWED contains the argument schemes, case studies, and ethics materials used in the AIED formative evaluation. The argument schemes and formative evaluation are described here:
+Nancy L. Green and L. Joshua Crotts. Argument Schemes for AI Ethics Education. *Computational Models of Natural Argument (CMNA 2020)*, 41-50. CEUR-WS.org/Vol-2669/paper5.pdf
+
+
 ## Running SWED
 To run SWED with default argument schemes, simply download the latest release from the swed_release/ folder. A direct link to the executable (Windows) is located [here](https://github.com/greennl/Ethics/blob/master/swed_release/SWED.exe), whereas the executable JAR file (Windows, MacOS, Linux) is [here](https://github.com/greennl/Ethics/blob/master/target/SWED-1.0.jar). Finally, to download everything you need including the EXE and other files, download and extract the zip file located [here](https://github.com/greennl/SWED/blob/master/swed_release/swed_release.zip). Within the swed_release/ folder, there are three subfolders: 
 
