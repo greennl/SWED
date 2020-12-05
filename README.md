@@ -6,7 +6,7 @@ SWED (Software Engineering Ethics Debater) is an educational argument diagrammin
 ## AIED – AI Ethics Debate
 AIED was designed to support creation and graphical realization of AI ethics arguments using argument schemes.  AIED was implemented using SWED.  The current version of SWED contains the argument schemes, case studies, and ethics materials used in the AIED formative evaluation. The argument schemes and formative evaluation are described here:
 
-Nancy L. Green and L. Joshua Crotts. Argument Schemes for AI Ethics Education. *Computational Models of Natural Argument (CMNA 2020)*, 41-50. [CEUR-WS.org/Vol-2669/paper5.pdf](CEUR-WS.org/Vol-2669/paper5.pdf)
+Nancy L. Green and L. Joshua Crotts. Argument Schemes for AI Ethics Education. *Computational Models of Natural Argument (CMNA 2020)*, 41-50. [CEUR-WS.org/Vol-2669/paper5.pdf]
 
 
 ## Running SWED
